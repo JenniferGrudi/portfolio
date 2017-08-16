@@ -1,0 +1,6 @@
+a {
+  transition: all .35s;
+  color: #917882;
+}
+
+a:hover{color: #785666;}
