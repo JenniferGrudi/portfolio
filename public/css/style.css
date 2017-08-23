@@ -4,3 +4,12 @@ a {
 }
 
 a:hover{color: #785666;}
+
+.center_skills ul{
+  font-family: Merriweather,'Helvetica Neue',Arial,sans-serif
+}
+
+.columns {
+  columns: 100px 3;
+  list-style-type: none;
+}
