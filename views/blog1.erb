@@ -1,0 +1,60 @@
+<section class="bg-primary" id="blog1">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+        <h2 class="section-heading">Welcome to My Blog</h2>
+        <hr class="light">             
+        <h3>Let's talk about testing...</h3>
+          <p class="text-faded">Let's set up your testing and talk about how you can select/grab elements</p>
+          <h3>Set Up</h3>
+          <div>
+            <img class="img" src="img/test_setUp.png">  
+          </div>
+          <h3>Selecting elements</h3>
+          <table>
+            <tr>
+              <th>Location</th>
+              <th>Example</th> 
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>@driver.find_element(:id, “user_name”)</td>   
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>@driver.find_element(:name, “user_name”)</td>   
+            </tr>
+            <tr>
+              <td>Class</td>
+              <td>@driver.find_element(:class, “user_blog”)</td>   
+            </tr>
+            <tr>
+              <td>xpath</td>
+              <td>@driver.find_elemnt(:xpath, '//*[@id="blog"]')</td>   
+            </tr>
+          </table>
+          <p class="text-faded">Once you have found the element you need you can do things with these elements</p>
+          <table>
+            <tr>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>@driver.find_element(:id, “user_name”).send_keys(“Jennifer”)</td>
+            </tr>
+            <tr>  
+              <td>@driver.find_element(:id, “button”).click</td>
+            </tr>
+          </table>
+          <br>
+          <p class="text-faded">you can even check if there is text on a wesite as followed...</p>
+          <p class="text-faded">button_present = @driver.find_element(:id, "btn").text.include? 'Submit'<br>assert_equal(true, audit_button_present, "there is NO button")</p>
+          <br>
+          <p class="text-faded">And I can go on and on, but I don't want to bore you, but if you have any questions please feel free to contact me. I'll do my best to help :) </p>
+      </div>          
+    </div>
+  </div>
+    <div class="pages">
+      <a style="color:white;" href="/blog">Previous</a> |
+      <a style="color:white;" href="/blog2">Next</a>      
+    </div>
+</section>          
