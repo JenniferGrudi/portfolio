@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.3.4-browsers
+       - image: circleci/ruby:2.3.1-browsers
     
     working_directory: ~/https://github.com/JenniferGrudi/portfolio.git
 
@@ -13,7 +13,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            bundle install --path vendor/bundle
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
@@ -22,7 +22,7 @@ jobs:
         
       # run tests!
       - run:
-          name: test_setup.rb
+          name: run tests
           command: |
              mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
