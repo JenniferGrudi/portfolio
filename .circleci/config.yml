@@ -1,43 +1,25 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.3.4-browsers
-      
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-
-    # working_directory: ~/repo
+    
+    working_directory: ~/https://github.com/JenniferGrudi/portfolio.git
 
     steps:
       - checkout
 
-      # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #     - v1-dependencies-{{ checksum "Gemfile.lock" }}
-      #     # fallback to using the latest cache if no exact match is found
-      #     - v1-dependencies-
-
       - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle install --path vendor/bundle
 
-      # - save_cache:
-      #     paths:
-      #       - ./vendor/bundle
-      #     key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
         
-      # # Database setup
-      # - run: bundle exec rake db:create
-      # - run: bundle exec rake db:schema:load
-
       # run tests!
       - run:
           name: test_setup.rb
