@@ -1,27 +1,41 @@
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-       - image: circleci/ruby:2.3.4-browsers
-    
+    parallelism: 3
     working_directory: ~/https://github.com/JenniferGrudi/portfolio.git
+      docker:
+        # specify the version you desire here
+        - image: circleci/ruby:2.3.4-browsers
+    
+        steps:
+          - checkout
 
-    steps:
-      - checkout
+          - restore_cache:
+          key: dependencies-{{ checksum "Gemfile.lock" }}
 
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+          - run:
+              name: install dependencies
+              command: |
+                bundle install --path vendor/bundle
 
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-        
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            creative_portfolio/test_setup.rb
+          - save_cache:
+              key: dependencies-{{ checksum "Gemfile.lock" }}
+              paths:
+                - vendor/bundle
+
+            - test:
+                override:
+                  - ruby ./test_setup.rb
+
+              
+            - type: shell
+                command: |
+                  bundle exec rspec --profile 10 \
+                                    --format RspecJunitFormatter \
+                                    --out test_results/rspec.xml \
+                                    --format progress \
+                                    $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+              # Save test results for timing analysis
+              - store_test_results:
+                  path: test_results  
