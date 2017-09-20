@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    parallelism: 3
     working_directory: ~/https://github.com/JenniferGrudi/portfolio.git    
     docker:
       # specify the version you desire here
