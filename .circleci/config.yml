@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/https://github.com/JenniferGrudi/portfolio.git    
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.3.4 - browsers  
+      - image: circleci/ruby:2.3.4  
     steps:
       - checkout
 
