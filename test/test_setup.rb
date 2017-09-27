@@ -5,9 +5,7 @@ class ExampleTestCase < Test::Unit::TestCase
 
   def setup
   caps = Selenium::WebDriver::Remote::Capabilities.chrome(chromeOptions: { args: [ "--headless" ]})  
-  @driver = Selenium::WebDriver.for:chrome
-  #, desired_capabilities:caps
-  @driver.manage.window.maximize()
+  @driver = Selenium::WebDriver.for:chrome, desired_capabilities:caps
   @driver.navigate.to("https://all-about-me.herokuapp.com/")
   end  
 
